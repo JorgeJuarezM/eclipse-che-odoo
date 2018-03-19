@@ -1,9 +1,11 @@
-FROM eclipse/ubuntu_python
+FROM eclipse/debian_jre
 
 MAINTAINER TP Sistemas S.A. <info@tpsistemas.com.ar>
 
 # Generate locale C.UTF-8 for postgres and general locale data
 ENV LANG C.UTF-8
+
+WORKDIR /tmp
 
 # Install some deps, lessc and less-plugin-clean-css, and wkhtmltopdf
 RUN set -x; \
@@ -12,6 +14,9 @@ RUN set -x; \
             ca-certificates \
             curl \
             node-less \
+            python3-pip \
+            python3-setuptools \
+            python3-renderpm \
             libssl-dev \
             libldap2-dev \
             libsasl2-dev \
@@ -38,3 +43,9 @@ RUN sudo pip3 install num2words xlwt qrcode vobject
 
 # Mount /var/lib/odoo to allow restoring filestore
 VOLUME ["/var/lib/odoo"]
+
+EXPOSE 8080 8000
+
+WORKDIR /projects
+
+CMD ["tailf", "/dev/null"]
