@@ -1,4 +1,4 @@
-FROM eclipse/debian_jre
+FROM eclipse/ubuntu_python
 
 MAINTAINER TP Sistemas S.A. <info@tpsistemas.com.ar>
 
@@ -14,9 +14,6 @@ RUN set -x; \
             ca-certificates \
             curl \
             node-less \
-            python3-pip \
-            python3-setuptools \
-            python3-renderpm \
             libssl-dev \
             libldap2-dev \
             libsasl2-dev \
@@ -43,9 +40,3 @@ RUN sudo pip3 install num2words xlwt qrcode vobject
 
 # Mount /var/lib/odoo to allow restoring filestore
 VOLUME ["/var/lib/odoo"]
-
-EXPOSE 8080 8000
-
-WORKDIR /projects
-
-CMD ["tailf", "/dev/null"]
