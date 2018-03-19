@@ -45,4 +45,4 @@ EXPOSE 8080 8000
 
 WORKDIR /projects
 
-CMD ["tailf", "/dev/null"]
+CMD tailf /dev/null
